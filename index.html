@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Flex Panels 💪</title>
+    <link
+      href="https://fonts.googleapis.com/css?family=Amatic+SC"
+      rel="stylesheet"
+      type="text/css"
+    />
+  </head>
+  <body>
+    <style>
+      html {
+        box-sizing: border-box;
+        background: #ffc600;
+        font-family: "helvetica neue";
+        font-size: 20px;
+        font-weight: 200;
+      }
+
+      body {
+        margin: 0;
+      }
+
+      *,
+      *:before,
+      *:after {
+        box-sizing: inherit;
+              }
+
+      .panels {
+        min-height: 100vh;
+        overflow: hidden;
+        display: flex;
+        text-align: center;
+        
+              }
+
+      .panel {
+        text-align: center;
+        justify-content: center;
+        align-items: center;
+         position: relative;
+        background: #6b0f9c;
+        box-shadow: inset 0 0 0 5px rgba(255, 255, 255, 0.1);
+        color: white;
+        /* Safari transitionend event.propertyName === flex */
+        /* Chrome + FF transitionend event.propertyName === flex-grow */
+        transition: font-size 0.7s cubic-bezier(0.61, -0.19, 0.7, -0.11),
+          flex 0.7s cubic-bezier(0.61, -0.19, 0.7, -0.11), background 0.2s;
+        font-size: 20px;
+        background-size: cover;
+        background-position: center;
+        display: flex;
+        flex: 1;
+        flex-direction: column;
+        border:#ffdde1 4px solid;
+        border-radius: 30px;
+        
+        
+              }
+
+      .panel1 {
+        background-image: url(https://images.unsplash.com/photo-1649333195003-18c47d64ed18?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTd8fGlzbGFtaWMlMjBpbWFnZXN8ZW58MHx8MHx8&auto=format&fit=crop&w=600&q=60);
+      }
+      .panel2 {
+        background-image: url(https://media.istockphoto.com/photos/beautiful-family-asking-for-forgiveness-on-hari-raya-aidilfitri-picture-id1195742475?b=1&k=20&m=1195742475&s=170667a&w=0&h=rl8h13KewHheVE8ca9qsIsAZrcGpSL1Ol_yySC5D2WE=);
+      }
+      .panel3 {
+        background-image: url(https://images.unsplash.com/photo-1584551246679-0daf3d275d0f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8aXNsYW1pYyUyMGJhY2tncm91bmR8ZW58MHx8MHx8&auto=format&fit=crop&w=600&q=60);
+      }
+      .panel4 {
+        background-image: url(https://images.unsplash.com/photo-1601823007666-72157031fc17?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxjb2xsZWN0aW9uLXBhZ2V8MTB8OTAxMzM3Nnx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=600&q=60);
+      }
+      .panel5 {
+        background-image: url(https://images.unsplash.com/photo-1540866225557-9e4c58100c67?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTV8fGJlYXV0aWZ1bCUyMG1vc3F1ZXN8ZW58MHx8MHx8&auto=format&fit=crop&w=600&q=60);
+      }
+     
+
+      /* Flex Children */
+      .panel > * {
+        margin: 0;
+        width: 100%;
+        transition: transform 0.5s;
+         display: flex ;
+        flex: 1,0 auto;
+        text-align: center;
+        justify-content: center;
+        align-items: center;
+       
+           }
+
+      .panel p {
+        text-transform: uppercase;
+        font-family: "Amatic SC", cursive;
+        text-shadow: 0 0 4px rgba(0, 0, 0, 0.72), 0 0 14px rgba(0, 0, 0, 0.45);
+        font-size: 2em;
+        
+            }
+
+
+      .panel p:nth-child(2) {
+        font-size: 4em;
+      }
+
+      .panel > *:first-child {
+        transform: translateY(-700%);
+        
+      }
+      .panel > *:last-child {
+        transform: translateY(700%);
+        position: relative;
+              }
+      .panel.open-active > *:first-child {
+        transform: translateY(0%);
+        
+              }
+      .panel.open-active > *:last-child {
+        transform: translateY(0%);
+        
+      }
+
+      .panel.open {
+        font-size: 40px;
+        flex: 5;
+
+      }
+     
+    </style>
+
+    <div class="panels">
+      <div class="panel panel1">
+        <p>Allah</p>
+        <p>Knows</p>
+        <p>Everything</p>
+      </div>
+      <div class="panel panel2">
+        <p>Love</p>
+        <p>Your</p>
+        <p>Parents</p>
+      </div>
+      <div class="panel panel3">
+        <p>Allah</p>
+        <p>Is</p>
+        <p>Merciful</p>
+      </div>
+      <div class="panel panel4">
+        <p>Speak</p>
+        <p>The</p>
+        <p>Truth</p>
+      </div>
+      <div class="panel panel5">
+        <p>Muhammad(P.B.U.H.)</p>
+        <p>Is</p>
+        <p>Last Prophet</p>
+      </div>
+    </div>
+
+    <script>
+      const panels = document.querySelectorAll('.panel');
+      function toggleOpen() {
+        this.classList.toggle('open')
+      }
+      function toggleActive(e) {
+          if(e.propertyName.includes('flex')){
+          this.classList.toggle('open-active')
+        }
+      }
+      panels.forEach(panel=>panel.addEventListener('click',toggleOpen))
+      panels.forEach(panel=>panel.addEventListener('transitionend',toggleActive))
+
+    </script>
+  </body>
+</html>
